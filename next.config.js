@@ -16,6 +16,9 @@ const config = {
     // your project has type errors.
     ignoreBuildErrors: true,
   },
+  turbopack: {
+    root: process.cwd(),
+  },
 };
 
 export default config;

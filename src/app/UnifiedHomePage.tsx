@@ -379,10 +379,82 @@ export default function UnifiedHomePage() {
           {/* CTA Button */}
           <button 
             onClick={() => document.getElementById('tool-section')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-yellow-400 hover:bg-yellow-500 text-black font-black text-lg px-10 py-4 rounded-full shadow-xl transform hover:scale-105 transition-all border-4 border-black"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black font-black text-lg px-10 py-4 rounded-full shadow-xl transform hover:scale-105 transition-all border-4 border-black mb-16"
           >
             Start Humanizing →
           </button>
+
+          {/* App Preview Mockup */}
+          <div className="max-w-5xl mx-auto mt-12">
+            <div className="hand-drawn-border bg-white p-8 shadow-2xl relative">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Left Side - Text Content */}
+                <div className="text-left">
+                  <p className="text-sm text-gray-600 font-semibold mb-3">Hi, welcome to NoteGlider</p>
+                  <h2 className="text-4xl md:text-5xl font-black text-black leading-tight mb-4">
+                    STUDY<br />
+                    SMARTER<br />
+                    WITH AI.
+                  </h2>
+                  <p className="text-gray-600 font-medium mb-6">
+                    Transform your notes into flashcards, quizzes, and summaries with AI. Focus with ambient sounds and track your progress.
+                  </p>
+                  <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-black px-8 py-3 rounded-xl border-4 border-black shadow-lg transform hover:scale-105 transition-all">
+                    Start Studying
+                  </button>
+                </div>
+
+                {/* Right Side - App Mockup */}
+                <div className="relative">
+                  {/* Floating Icons */}
+                  <div className="absolute -top-4 -left-4 w-16 h-16 bg-teal-400 rounded-full opacity-60 float-animation"></div>
+                  <div className="absolute -top-2 left-20 w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center text-white text-2xl border-3 border-black shadow-lg">
+                    🔒
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center text-2xl border-3 border-black shadow-lg">
+                    ✨
+                  </div>
+                  <div className="absolute bottom-10 -right-8 w-16 h-16 bg-pink-400 rounded-full opacity-70 float-animation" style={{ animationDelay: '1s' }}></div>
+
+                  {/* Main App Card */}
+                  <div className="relative bg-gradient-to-br from-teal-400 to-teal-500 rounded-3xl border-4 border-black shadow-2xl p-8 overflow-hidden">
+                    {/* App Header */}
+                    <div className="absolute top-4 right-4 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-black border-2 border-black shadow-md flex items-center gap-2">
+                      😊 NoteGlider
+                    </div>
+
+                    {/* Content Area */}
+                    <div className="mt-12 space-y-4">
+                      <div className="bg-white/30 backdrop-blur-sm rounded-xl p-4 border-2 border-white/50">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-1 bg-white/60 rounded"></div>
+                          <div className="w-4 h-4 bg-yellow-300 rounded-full border-2 border-black"></div>
+                        </div>
+                      </div>
+                      <div className="bg-white/30 backdrop-blur-sm rounded-xl p-4 border-2 border-white/50">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-1 bg-white/60 rounded"></div>
+                        </div>
+                      </div>
+                      <div className="bg-white/30 backdrop-blur-sm rounded-xl p-4 border-2 border-white/50">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-1 bg-white/60 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Badge */}
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-teal-600 text-white px-6 py-2 rounded-full text-xs font-bold border-2 border-black shadow-lg">
+                      ✨ Available for Students
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative circles outside the box */}
+              <div className="absolute -left-8 top-1/4 w-16 h-16 border-4 border-pink-400 rounded-full"></div>
+            </div>
+          </div>
         </div>
       </section>
 
