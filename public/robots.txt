@@ -1,0 +1,24 @@
+# robots.txt for filternote.com
+
+# Allow all web crawlers to access all content except sensitive areas
+
+User-agent: *
+Allow: /
+
+# Disallow sensitive areas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /account
+Disallow: /api-keys
+
+# Allow specific API endpoints for SEO
+Allow: /api/og
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Sitemap location (canonical domain with www)
+Sitemap: https://filternote.com/sitemap.xml

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://filternote.com/</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Pricing Page -->
+  <url>
+    <loc>https://filternote.com/pricing</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- FAQ Page -->
+  <url>
+    <loc>https://filternote.com/faq</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Contact Page -->
+  <url>
+    <loc>https://filternote.com/contact</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://filternote.com/privacy</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <!-- Terms and Conditions-->
+  <url>
+    <loc>https://filternote.com/terms</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <!-- Responsible Use -->
+  <url>
+    <loc>https://filternote.com/responsible-use</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
