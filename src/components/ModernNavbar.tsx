@@ -32,19 +32,21 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
     : navLinks;
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-gray-200">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 z-50 w-full bg-white border-b-4 border-black shadow-lg">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="FilterNote" width={32} height={32} className="rounded-lg" />
-          <span className="text-2xl font-black tracking-tight text-[#0f1f0f]">
+        <Link href="/" className="flex items-center gap-3 transform hover:scale-105 transition-transform">
+          <div className="relative">
+            <Image src="/logo.png" alt="FilterNote" width={40} height={40} className="rounded-xl border-2 border-black" />
+          </div>
+          <span className="text-2xl font-black tracking-tight text-black">
             FilterNote
           </span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 lg:flex">
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6">
             {allNavLinks.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -52,8 +54,8 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "text-sm font-semibold transition-colors",
-                    isActive ? "text-[#22c55e]" : "text-gray-600 hover:text-[#22c55e]"
+                    "text-sm font-bold transition-all transform hover:scale-110",
+                    isActive ? "text-green-500" : "text-gray-700 hover:text-green-500"
                   )}
                 >
                   {item.label}
@@ -66,12 +68,12 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
             {isSignedIn ? (
               <>
                 {isTeamMember && (
-                  <span className="rounded-full bg-[#22c55e]/10 px-3 py-1 text-xs font-bold text-[#22c55e] border border-[#22c55e]/30">
+                  <span className="rounded-full bg-green-400 px-3 py-1.5 text-xs font-black text-black border-2 border-black shadow-md">
                     Team
                   </span>
                 )}
                 {currentCredits !== undefined && (
-                  <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-bold text-[#0f1f0f]">
+                  <span className="rounded-full bg-yellow-300 px-4 py-1.5 text-sm font-black text-black border-2 border-black shadow-md">
                     {currentCredits} credits
                   </span>
                 )}
@@ -80,23 +82,23 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
                     variant="outline"
                     size="sm"
                     onClick={onHistoryClick}
-                    className="gap-2 rounded-full border-2 border-gray-300 font-semibold hover:border-[#22c55e] hover:text-[#22c55e]"
+                    className="gap-2 rounded-full border-2 border-black font-black hover:bg-green-50 shadow-md"
                   >
                     <History className="h-4 w-4" />
                     History
                   </Button>
                 )}
-                <UserButton appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
+                <UserButton appearance={{ elements: { avatarBox: "w-10 h-10 border-2 border-black" } }} />
               </>
             ) : (
               <>
                 <SignInButton mode="modal">
-                  <Button variant="ghost" className="text-gray-600 font-semibold hover:text-[#22c55e] hover:bg-[#22c55e]/5">
+                  <Button variant="ghost" className="text-gray-700 font-black hover:text-green-500 hover:bg-green-50">
                     Sign In
                   </Button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <Button className="rounded-full bg-[#22c55e] px-6 text-white font-bold hover:bg-[#16a34a]">
+                  <Button className="rounded-full bg-green-500 px-6 py-2 text-white font-black hover:bg-green-600 border-2 border-black shadow-lg transform hover:scale-105 transition-all">
                     Sign Up
                   </Button>
                 </SignUpButton>
@@ -108,7 +110,7 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
         {/* Mobile menu button */}
         <button
           type="button"
-          className="inline-flex items-center rounded-lg p-2 text-gray-600 transition hover:bg-gray-100 lg:hidden"
+          className="inline-flex items-center rounded-lg p-2 text-gray-700 transition hover:bg-gray-100 lg:hidden border-2 border-black"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -117,7 +119,7 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-gray-200 bg-white pb-6 pt-4 lg:hidden">
+        <div className="border-t-4 border-black bg-gradient-to-br from-yellow-50 to-green-50 pb-6 pt-4 lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4">
             {allNavLinks.map((item) => {
               const isActive = pathname === item.href;
@@ -126,8 +128,8 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "rounded-lg px-3 py-2 font-semibold transition hover:bg-gray-100",
-                    isActive && "bg-[#22c55e]/10 text-[#22c55e]"
+                    "rounded-xl px-4 py-3 font-black transition border-2 border-black shadow-md",
+                    isActive ? "bg-green-400 text-black" : "bg-white hover:bg-green-50"
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -139,14 +141,14 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
             {isSignedIn ? (
               <div className="mt-3 flex flex-col gap-3">
                 {currentCredits !== undefined && (
-                  <div className="rounded-lg bg-gray-100 px-4 py-2 text-center font-bold text-[#0f1f0f]">
+                  <div className="rounded-xl bg-yellow-300 px-4 py-3 text-center font-black text-black border-2 border-black shadow-md">
                     {currentCredits} credits
                   </div>
                 )}
                 {onHistoryClick && (
                   <Button
                     variant="outline"
-                    className="w-full gap-2 rounded-lg border-2 border-gray-300 font-semibold"
+                    className="w-full gap-2 rounded-xl border-2 border-black font-black shadow-md"
                     onClick={() => { onHistoryClick(); setMobileMenuOpen(false); }}
                   >
                     <History className="h-4 w-4" />
@@ -154,18 +156,18 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
                   </Button>
                 )}
                 <div className="flex justify-center pt-1">
-                  <UserButton appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
+                  <UserButton appearance={{ elements: { avatarBox: "w-10 h-10 border-2 border-black" } }} />
                 </div>
               </div>
             ) : (
               <div className="mt-3 flex flex-col gap-3">
                 <SignInButton mode="modal">
-                  <Button variant="outline" className="w-full rounded-lg border-2 border-gray-300 font-semibold">
+                  <Button variant="outline" className="w-full rounded-xl border-2 border-black font-black shadow-md">
                     Sign In
                   </Button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <Button className="w-full rounded-lg bg-[#22c55e] text-white font-bold hover:bg-[#16a34a]">
+                  <Button className="w-full rounded-xl bg-green-500 text-white font-black hover:bg-green-600 border-2 border-black shadow-lg">
                     Sign Up
                   </Button>
                 </SignUpButton>

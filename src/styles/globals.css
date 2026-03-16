@@ -5,6 +5,7 @@
 @layer base {
   body {
     font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    background: #FFF9F0;
   }
 }
 
@@ -23,4 +24,49 @@
   100% {
     transform: translateX(-100%);
   }
+}
+
+/* Hand-drawn border effect */
+.hand-drawn-border {
+  border: 3px solid #000;
+  border-radius: 20px;
+  position: relative;
+}
+
+.hand-drawn-border::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 3px solid #000;
+  border-radius: 20px;
+  transform: rotate(-0.5deg);
+  z-index: -1;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Wiggle animation */
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.wiggle-animation {
+  animation: wiggle 2s ease-in-out infinite;
 }
