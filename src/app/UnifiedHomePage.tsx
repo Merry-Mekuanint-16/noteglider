@@ -565,7 +565,7 @@ export default function UnifiedHomePage() {
                       variant="outline"
                       size="sm"
                       onClick={handleCopy}
-                      disabled={!humanizedText}
+                      disabled={!generatedContent}
                       className="border-2 border-black bg-white hover:bg-yellow-50 font-bold"
                     >
                       {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
@@ -574,23 +574,23 @@ export default function UnifiedHomePage() {
                   <div className="flex-1 bg-white border-2 border-black rounded-xl shadow-lg overflow-hidden relative">
                     <ScrollArea className="h-[500px] w-full">
                       <div className="p-6 pb-16">
-                        {isHumanizing && humanizedText.length < 50 && thoughtsList.length > 0 ? (
+                        {isProcessing && generatedContent.length < 50 && thoughtsList.length > 0 ? (
                           <div className="flex items-center gap-3 text-gray-700 font-semibold">
                             <Loader2 className="w-5 h-5 animate-spin text-green-500" />
                             <span>{thoughtsList[0]}</span>
                           </div>
                         ) : (
-                          <p className="text-base whitespace-pre-wrap font-medium text-gray-800">{humanizedText}</p>
+                          <p className="text-base whitespace-pre-wrap font-medium text-gray-800">{generatedContent}</p>
                         )}
                       </div>
                     </ScrollArea>
                     
-                    {/* Human Badge */}
-                    {!isHumanizing && humanizedText && currentAiScore !== null && (
+                    {/* Success Badge */}
+                    {!isProcessing && generatedContent && currentAiScore !== null && (
                       <div className="absolute bottom-4 right-4 z-20">
                         <div className="bg-green-400 text-black px-4 py-2 rounded-full text-sm font-black border-3 border-black shadow-xl flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 duration-300">
                           <Check className="w-4 h-4" />
-                          {currentAiScore}% Human ✨
+                          Complete ✨
                         </div>
                       </div>
                     )}
@@ -606,16 +606,16 @@ export default function UnifiedHomePage() {
               </span>
               <Button
                 onClick={isSignedIn ? handleHumanize : () => setShowSignInPrompt(true)}
-                disabled={isHumanizing || !originalText.trim() || wordCount < 50}
+                disabled={isProcessing || !originalText.trim() || wordCount < 50}
                 className="bg-green-500 hover:bg-green-600 text-white font-black text-lg px-10 py-3 rounded-full shadow-xl border-4 border-black transform hover:scale-105 transition-all"
               >
-                {isHumanizing ? (
+                {isProcessing ? (
                   <>
                     <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    Humanizing...
+                    Processing...
                   </>
                 ) : (
-                  "Humanize ✨"
+                  "Generate ✨"
                 )}
               </Button>
             </div>

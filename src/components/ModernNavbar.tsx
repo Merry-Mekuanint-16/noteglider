@@ -37,10 +37,10 @@ export default function ModernNavbar({ onHistoryClick, currentCredits, isTeamMem
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 transform hover:scale-105 transition-transform">
           <div className="relative">
-            <Image src="/logo.png" alt="FilterNote" width={40} height={40} className="rounded-xl border-2 border-black" />
+            <Image src="/logo.png" alt="NoteGlider" width={40} height={40} className="rounded-xl border-2 border-black" />
           </div>
           <span className="text-2xl font-black tracking-tight text-black">
-            FilterNote
+            NoteGlider
           </span>
         </Link>
 
