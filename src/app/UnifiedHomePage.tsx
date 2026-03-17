@@ -311,9 +311,11 @@ export default function UnifiedHomePage() {
           <div className="relative inline-block mb-8">
             <div className="hand-drawn-border bg-white p-8 md:p-12 shadow-2xl">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-black leading-tight">
-                MAKE AI SOUND
+                STUDY
                 <br />
-                <span className="text-green-500">HUMAN.</span>
+                SMARTER
+                <br />
+                <span className="text-green-500">WITH AI.</span>
               </h1>
             </div>
             
@@ -322,38 +324,38 @@ export default function UnifiedHomePage() {
               className="absolute px-4 py-2 bg-green-500 text-white rounded-full text-sm font-bold shadow-lg hidden md:block"
               style={{ top: '-20px', left: '-80px', transform: 'rotate(-12deg)' }}
             >
-              ✨ Students
+              📝 Summary
             </span>
             
             <span 
               className="absolute px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-bold shadow-lg hidden md:block"
               style={{ top: '20px', right: '-100px', transform: 'rotate(8deg)' }}
             >
-              📝 Writers
+              🎴 Flashcards
             </span>
             
             <span 
               className="absolute px-4 py-2 bg-purple-500 text-white rounded-full text-sm font-bold shadow-lg hidden md:block"
               style={{ bottom: '40px', left: '-120px', transform: 'rotate(-6deg)' }}
             >
-              🔬 Researchers
+              ❓ Quiz
             </span>
             
             <span 
               className="absolute px-4 py-2 bg-orange-500 text-white rounded-full text-sm font-bold shadow-lg hidden md:block"
               style={{ bottom: '-10px', right: '-90px', transform: 'rotate(10deg)' }}
             >
-              📊 Marketers
+              🎧 Audio
             </span>
           </div>
           
           {/* Mobile Pills */}
           <div className="flex flex-wrap justify-center gap-2 mb-8 md:hidden">
             {[
-              { label: "✨ Students", color: "bg-green-500" },
-              { label: "📝 Writers", color: "bg-blue-500" },
-              { label: "🔬 Researchers", color: "bg-purple-500" },
-              { label: "📊 Marketers", color: "bg-orange-500" }
+              { label: "📝 Summary", color: "bg-green-500" },
+              { label: "🎴 Flashcards", color: "bg-blue-500" },
+              { label: "❓ Quiz", color: "bg-purple-500" },
+              { label: "🎧 Audio", color: "bg-orange-500" }
             ].map((pill) => (
               <span
                 key={pill.label}
@@ -365,7 +367,7 @@ export default function UnifiedHomePage() {
           </div>
 
           <p className="text-gray-700 text-xl max-w-2xl mx-auto mb-12 font-medium">
-            Transform AI-generated content into natural, human-like text that bypasses all detectors.
+            Transform your notes into flashcards, quizzes, and summaries with AI. Focus with ambient sounds and track your progress.
           </p>
           
           {/* CTA Button */}
@@ -373,7 +375,7 @@ export default function UnifiedHomePage() {
             onClick={() => document.getElementById('tool-section')?.scrollIntoView({ behavior: 'smooth' })}
             className="bg-yellow-400 hover:bg-yellow-500 text-black font-black text-lg px-10 py-4 rounded-full shadow-xl transform hover:scale-105 transition-all border-4 border-black mb-16"
           >
-            Start Humanizing →
+            Start Studying →
           </button>
 
           {/* App Preview Mockup */}
