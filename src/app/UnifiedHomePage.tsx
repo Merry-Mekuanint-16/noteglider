@@ -299,87 +299,88 @@ export default function UnifiedHomePage() {
         onSelectItem={handleHistorySelect}
       />
 
-      {/* Hero Section with Playful Design */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-24 h-24 bg-pink-400 rounded-full opacity-60 float-animation" style={{ animationDelay: '0s' }}></div>
-        <div className="absolute top-40 right-20 w-32 h-32 bg-teal-400 rounded-full opacity-50 float-animation" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-yellow-400 rounded-full opacity-60 wiggle-animation"></div>
+      {/* Hero Section - Exact Match to Design */}
+      <section className="relative py-12 overflow-hidden">
+        {/* Decorative circles - exact positions */}
+        <div className="absolute top-12 left-12 w-20 h-20 bg-teal-400 rounded-full opacity-90"></div>
+        <div className="absolute top-40 left-8 w-16 h-16 border-4 border-red-400 rounded-full opacity-70"></div>
+        <div className="absolute bottom-24 right-24 w-20 h-20 bg-purple-300 rounded-full opacity-80"></div>
+        <div className="absolute bottom-32 right-20 w-16 h-16 bg-yellow-300 rounded-full opacity-90"></div>
+        <div className="absolute bottom-12 right-12 w-24 h-24 bg-pink-400 rounded-full opacity-80"></div>
         
-        <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          {/* Main Headline with Hand-drawn Frame */}
-          <div className="relative inline-block mb-8">
-            <div className="hand-drawn-border bg-white p-8 md:p-12 shadow-2xl">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-black leading-tight">
-                STUDY
-                <br />
-                SMARTER
-                <br />
-                <span className="text-green-500">WITH AI.</span>
-              </h1>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="hand-drawn-border bg-white p-10 md:p-16 shadow-2xl relative">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left side - Text content (exact match) */}
+              <div>
+                <p className="text-sm text-gray-600 mb-6 font-medium">Hi, welcome to NoteGlider</p>
+                
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-black leading-tight mb-6">
+                  STUDY<br />
+                  SMARTER<br />
+                  WITH AI.
+                </h1>
+                
+                <p className="text-gray-700 text-base md:text-lg mb-8 font-normal max-w-md leading-relaxed">
+                  Transform your notes into flashcards, quizzes, and summaries with AI. Focus with ambient sounds and track your progress.
+                </p>
+                
+                <button 
+                  onClick={() => document.getElementById('tool-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-yellow-400 hover:bg-yellow-500 text-black font-black text-base px-8 py-3.5 rounded-2xl shadow-lg transform hover:scale-105 transition-all border-4 border-black"
+                >
+                  Start Studying
+                </button>
+              </div>
+              
+              {/* Right side - Illustration (exact match) */}
+              <div className="relative">
+                {/* Lock icon - top left */}
+                <div className="absolute -top-4 left-8 w-14 h-14 bg-purple-500 rounded-2xl flex items-center justify-center border-4 border-black shadow-lg z-10">
+                  <Lock className="w-7 h-7 text-white" />
+                </div>
+                
+                {/* Main card illustration */}
+                <div className="bg-teal-400 rounded-3xl p-10 border-4 border-black shadow-2xl mt-8 relative">
+                  {/* NoteGlider badge - top right */}
+                  <div className="absolute -top-3 right-6 bg-yellow-400 px-4 py-2 rounded-full border-4 border-black shadow-lg flex items-center gap-1.5">
+                    <span className="text-lg">📚</span>
+                    <span className="font-black text-sm">NoteGlider</span>
+                  </div>
+                  
+                  {/* Note lines illustration */}
+                  <div className="space-y-5 mb-10 mt-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-full h-3 bg-teal-300 rounded-full"></div>
+                      <div className="w-8 h-8 bg-yellow-300 rounded-lg border-2 border-black flex items-center justify-center flex-shrink-0">
+                        <span className="text-sm font-bold">✓</span>
+                      </div>
+                    </div>
+                    <div className="w-3/4 h-3 bg-teal-300 rounded-full"></div>
+                    <div className="w-full h-3 bg-teal-300 rounded-full"></div>
+                  </div>
+                  
+                  {/* Bottom badge */}
+                  <div className="bg-teal-500 text-white px-5 py-2.5 rounded-full text-sm font-bold inline-flex items-center gap-2 border-2 border-black">
+                    <span>✨</span>
+                    <span>Available for Students</span>
+                  </div>
+                </div>
+                
+                {/* Decorative dots - bottom right */}
+                <div className="absolute -bottom-4 -right-4 w-14 h-14 bg-yellow-300 rounded-full border-4 border-black flex items-center justify-center shadow-lg">
+                  <div className="grid grid-cols-2 gap-1.5">
+                    <div className="w-2 h-2 bg-black rounded-full"></div>
+                    <div className="w-2 h-2 bg-black rounded-full"></div>
+                    <div className="w-2 h-2 bg-black rounded-full"></div>
+                    <div className="w-2 h-2 bg-black rounded-full"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            {/* Floating Pills around headline */}
-            <span 
-              className="absolute px-4 py-2 bg-green-500 text-white rounded-full text-sm font-bold shadow-lg hidden md:block"
-              style={{ top: '-20px', left: '-80px', transform: 'rotate(-12deg)' }}
-            >
-              📝 Summary
-            </span>
-            
-            <span 
-              className="absolute px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-bold shadow-lg hidden md:block"
-              style={{ top: '20px', right: '-100px', transform: 'rotate(8deg)' }}
-            >
-              🎴 Flashcards
-            </span>
-            
-            <span 
-              className="absolute px-4 py-2 bg-purple-500 text-white rounded-full text-sm font-bold shadow-lg hidden md:block"
-              style={{ bottom: '40px', left: '-120px', transform: 'rotate(-6deg)' }}
-            >
-              ❓ Quiz
-            </span>
-            
-            <span 
-              className="absolute px-4 py-2 bg-orange-500 text-white rounded-full text-sm font-bold shadow-lg hidden md:block"
-              style={{ bottom: '-10px', right: '-90px', transform: 'rotate(10deg)' }}
-            >
-              🎧 Audio
-            </span>
           </div>
-          
-          {/* Mobile Pills */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8 md:hidden">
-            {[
-              { label: "📝 Summary", color: "bg-green-500" },
-              { label: "🎴 Flashcards", color: "bg-blue-500" },
-              { label: "❓ Quiz", color: "bg-purple-500" },
-              { label: "🎧 Audio", color: "bg-orange-500" }
-            ].map((pill) => (
-              <span
-                key={pill.label}
-                className={`px-3 py-1.5 ${pill.color} text-white rounded-full text-xs font-bold shadow-md`}
-              >
-                {pill.label}
-              </span>
-            ))}
-          </div>
-
-          <p className="text-gray-700 text-xl max-w-2xl mx-auto mb-12 font-medium">
-            Transform your notes into flashcards, quizzes, and summaries with AI. Focus with ambient sounds and track your progress.
-          </p>
-          
-          {/* CTA Button */}
-          <button 
-            onClick={() => document.getElementById('tool-section')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-yellow-400 hover:bg-yellow-500 text-black font-black text-lg px-10 py-4 rounded-full shadow-xl transform hover:scale-105 transition-all border-4 border-black mb-16"
-          >
-            Start Studying →
-          </button>
-
-          {/* App Preview Mockup */}
-          <div className="max-w-5xl mx-auto mt-12">
+        </div>
+      </section>
             <div className="hand-drawn-border bg-white p-8 shadow-2xl relative">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 {/* Left Side - Text Content */}
@@ -625,21 +626,20 @@ export default function UnifiedHomePage() {
         </div>
       </section>
 
-      {/* AI Detectors Section */}
+      {/* Study Modes Section */}
       <section className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-gray-600 text-sm font-bold mb-8 uppercase tracking-wide">Bypass all major AI detectors</p>
+          <p className="text-gray-600 text-sm font-bold mb-8 uppercase tracking-wide">All your study needs in one place</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {DETECTOR_NAMES.map((detector) => (
-              <div key={detector.name} className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100 transform hover:scale-110">
-                <Image
-                  src={detector.logo}
-                  alt={detector.name}
-                  width={28}
-                  height={28}
-                  className="object-contain"
-                />
-                <span className="text-sm font-bold text-gray-700">{detector.name}</span>
+            {[
+              { name: "Summary", icon: "📝" },
+              { name: "Flashcards", icon: "🎴" },
+              { name: "Quiz", icon: "❓" },
+              { name: "Audio Learning", icon: "🎧" }
+            ].map((mode) => (
+              <div key={mode.name} className="flex items-center gap-3 transform hover:scale-110 transition-all">
+                <span className="text-3xl">{mode.icon}</span>
+                <span className="text-base font-bold text-gray-700">{mode.name}</span>
               </div>
             ))}
           </div>
@@ -650,18 +650,18 @@ export default function UnifiedHomePage() {
       <section className="py-20" style={{ background: '#FFF9F0' }}>
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-black text-center text-black mb-4">
-            Why FilterNote?
+            Why NoteGlider?
           </h2>
-          <p className="text-center text-gray-600 mb-12 text-lg font-medium">Everything you need to humanize AI text</p>
+          <p className="text-center text-gray-600 mb-12 text-lg font-medium">Everything you need to ace your studies</p>
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { title: "🎯 Undetectable", desc: "Passes Turnitin, GPTZero, and all major AI detectors with ease.", color: "bg-pink-100 border-pink-300" },
-              { title: "✨ Natural Flow", desc: "Maintains your original meaning while adding human-like variations.", color: "bg-blue-100 border-blue-300" },
-              { title: "⚡ Lightning Fast", desc: "Get results in seconds, not minutes. Stream output in real-time.", color: "bg-yellow-100 border-yellow-300" },
-              { title: "🎨 Multiple Tones", desc: "Choose from Standard, Casual, Professional, Academic, or Creative.", color: "bg-green-100 border-green-300" },
-              { title: "🔒 Secure & Private", desc: "Your content is never stored or used for training purposes.", color: "bg-purple-100 border-purple-300" },
-              { title: "💰 Pay As You Go", desc: "Flexible credits system. Only pay for what you use.", color: "bg-orange-100 border-orange-300" },
+              { title: "📝 Smart Summaries", desc: "Get concise summaries of your notes instantly with AI-powered analysis.", color: "bg-pink-100 border-pink-300" },
+              { title: "🎴 Auto Flashcards", desc: "Generate flashcards automatically from your notes for effective memorization.", color: "bg-blue-100 border-blue-300" },
+              { title: "❓ Practice Quizzes", desc: "Test your knowledge with AI-generated quizzes based on your content.", color: "bg-yellow-100 border-yellow-300" },
+              { title: "🎧 Audio Learning", desc: "Listen to your notes with text-to-speech for learning on the go.", color: "bg-green-100 border-green-300" },
+              { title: "📊 Track Progress", desc: "Monitor your study sessions and see your improvement over time.", color: "bg-purple-100 border-purple-300" },
+              { title: "🔒 Private & Secure", desc: "Your notes are encrypted and never shared. Complete privacy guaranteed.", color: "bg-orange-100 border-orange-300" },
             ].map((feature, i) => (
               <div key={i} className={`${feature.color} p-6 rounded-2xl border-4 border-black shadow-lg transform hover:scale-105 transition-all`}>
                 <h3 className="font-black text-black mb-3 text-lg">{feature.title}</h3>
@@ -678,9 +678,9 @@ export default function UnifiedHomePage() {
           <h2 className="text-4xl md:text-5xl font-black text-center text-black mb-16">How It Works</h2>
           <div className="grid md:grid-cols-3 gap-12">
             {[
-              { step: "1", title: "Paste Your Text", desc: "Copy and paste your AI-generated content into the editor.", emoji: "📝" },
-              { step: "2", title: "Choose Your Tone", desc: "Select the writing style that matches your needs.", emoji: "🎨" },
-              { step: "3", title: "Get Human Text", desc: "Receive naturally flowing text that bypasses AI detection.", emoji: "✨" },
+              { step: "1", title: "Upload Your Notes", desc: "Paste or upload your study notes, lecture transcripts, or textbook content.", emoji: "📤" },
+              { step: "2", title: "Choose Study Mode", desc: "Select what you need: summaries, flashcards, quizzes, or audio.", emoji: "🎯" },
+              { step: "3", title: "Start Learning", desc: "Get AI-generated study materials instantly and ace your exams.", emoji: "🎓" },
             ].map((item, i) => (
               <div key={i} className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 text-white rounded-full flex items-center justify-center text-3xl font-black mx-auto mb-6 border-4 border-black shadow-xl transform hover:rotate-12 transition-all">
@@ -712,10 +712,10 @@ export default function UnifiedHomePage() {
           <h2 className="text-4xl md:text-5xl font-black text-center text-black mb-16">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {[
-              { q: "How does FilterNote work?", a: "FilterNote uses advanced AI to rewrite your text while preserving meaning, making it undetectable by AI detection tools.", emoji: "🤔" },
-              { q: "Is my content safe?", a: "Yes. We don't store your content or use it for training. Your text is processed and immediately discarded.", emoji: "🔒" },
-              { q: "What AI detectors does it bypass?", a: "FilterNote bypasses all major detectors including Turnitin, GPTZero, Copyleaks, ZeroGPT, Originality.ai, and more.", emoji: "✅" },
-              { q: "How many words can I humanize?", a: "It depends on your plan. Free users get limited credits, while paid plans offer more generous allowances.", emoji: "📊" },
+              { q: "How does NoteGlider work?", a: "NoteGlider uses AI to analyze your notes and generate study materials like summaries, flashcards, and quizzes automatically.", emoji: "🤔" },
+              { q: "Is my data safe?", a: "Yes! Your notes are encrypted and stored securely. We never share your data with third parties.", emoji: "🔒" },
+              { q: "What formats can I upload?", a: "You can upload text, PDF, Word documents, or paste content directly into the editor.", emoji: "📄" },
+              { q: "How much does it cost?", a: "We offer a free tier with limited credits. Paid plans start at just $5/month for unlimited access.", emoji: "💰" },
             ].map((faq, i) => (
               <div key={i} className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl border-4 border-black shadow-lg transform hover:scale-105 transition-all">
                 <h3 className="font-black text-black mb-3 text-lg flex items-center gap-2">
