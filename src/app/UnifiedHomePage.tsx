@@ -130,8 +130,8 @@ export default function UnifiedHomePage() {
     if (currentCredits === undefined) { toast.info("Syncing credits..."); await fetchCredits(); return; }
     if (currentCredits < wordCount) { toast.error("Insufficient credits"); document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" }); return; }
 
-    setIsHumanizing(true);
-    setHumanizedText("");
+    setIsProcessing(true);
+    setGeneratedContent("");
     setThoughtsList([]);
     setCurrentAiScore(null);
 
@@ -139,13 +139,13 @@ export default function UnifiedHomePage() {
       const response = await fetch("/api/humanizer/stream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: originalText, preset: tone, tone }),
+        body: JSON.stringify({ text: originalText, preset: studyMode, tone: studyMode }),
       });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        toast.error(errorData.error || "Failed to humanize");
-        setIsHumanizing(false);
+        toast.error(errorData.error || "Failed to generate");
+        setIsProcessing(false);
         return;
       }
 
@@ -175,7 +175,7 @@ export default function UnifiedHomePage() {
             if (json.type === "complete") {
               streamCompleted = true;
               setCurrentAiScore(100);
-              setIsHumanizing(false);
+              setIsProcessing(false);
               setThoughtsList([]);
               toast.success(`Done! ${json.credits_remaining} credits left.`);
               void fetchCredits();
@@ -187,7 +187,7 @@ export default function UnifiedHomePage() {
               if (content) {
                 accumulatedText += content;
                 if (accumulatedText.length > 50) setThoughtsList([]);
-                setHumanizedText(accumulatedText);
+                setGeneratedContent(accumulatedText);
               }
             }
           } catch {}
@@ -195,37 +195,37 @@ export default function UnifiedHomePage() {
       }
 
       if (!streamCompleted && accumulatedText.length > 0) {
-        setIsHumanizing(false);
+        setIsProcessing(false);
         setCurrentAiScore(100);
       }
     } catch {
-      toast.error("Failed to humanize text");
-      setIsHumanizing(false);
+      toast.error("Failed to generate content");
+      setIsProcessing(false);
     }
-  }, [originalText, isSignedIn, currentCredits, tone, fetchCredits, fetchHistory]);
+  }, [originalText, isSignedIn, currentCredits, studyMode, fetchCredits, fetchHistory]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && originalText.trim() && !isHumanizing && isSignedIn) {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && originalText.trim() && !isProcessing && isSignedIn) {
         e.preventDefault();
         void handleHumanize();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [originalText, isHumanizing, isSignedIn, handleHumanize]);
+  }, [originalText, isProcessing, isSignedIn, handleHumanize]);
 
   const handleCopy = async () => {
-    if (!humanizedText) return;
-    await navigator.clipboard.writeText(humanizedText);
+    if (!generatedContent) return;
+    await navigator.clipboard.writeText(generatedContent);
     setCopied(true);
     toast.success("Copied!");
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleDownload = () => {
-    if (!humanizedText) return;
-    const blob = new Blob([humanizedText], { type: "text/plain;charset=utf-8" });
+    if (!generatedContent) return;
+    const blob = new Blob([generatedContent], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
@@ -278,11 +278,11 @@ export default function UnifiedHomePage() {
   const handleDrop = (e: DragEvent<HTMLDivElement | HTMLTextAreaElement>) => { e.preventDefault(); setIsDragging(false); if (e.dataTransfer.files?.[0]) processFile(e.dataTransfer.files[0]); };
   const handleDragOver = (e: DragEvent<HTMLDivElement | HTMLTextAreaElement>) => { e.preventDefault(); setIsDragging(true); };
   const handleDragLeave = (e: DragEvent<HTMLDivElement | HTMLTextAreaElement>) => { e.preventDefault(); setIsDragging(false); };
-  const handleHistorySelect = (item: HistoryItem) => { setOriginalText(item.originalText); setHumanizedText(item.humanizedText); setTone(item.preset); };
+  const handleHistorySelect = (item: HistoryItem) => { setOriginalText(item.originalText); setGeneratedContent(item.humanizedText); setStudyMode(item.preset); };
 
   const wordCount = originalText.trim().split(/\s+/).filter(Boolean).length;
   const charCount = originalText.length;
-  const showOutputPanel = isHumanizing || Boolean(humanizedText);
+  const showOutputPanel = isProcessing || Boolean(generatedContent);
   const hasAccess = subscriptionPlan === "pro" || subscriptionPlan === "ultra" || subscriptionPlan === "lifetime";
 
   return (
@@ -457,15 +457,15 @@ export default function UnifiedHomePage() {
             {/* Tool Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b-4 border-black bg-gradient-to-r from-green-50 to-blue-50">
               <div className="flex items-center gap-4">
-                <Select value={tone} onValueChange={setTone}>
+                <Select value={studyMode} onValueChange={setStudyMode}>
                   <SelectTrigger className="w-44 border-2 border-black rounded-xl bg-white font-bold shadow-md">
-                    <SelectValue placeholder="Select tone" />
+                    <SelectValue placeholder="Select mode" />
                   </SelectTrigger>
                   <SelectContent className="bg-white border-2 border-black shadow-xl">
-                    {TONES.map((t) => (
+                    {STUDY_MODES.map((t) => (
                       <SelectItem key={t.value} value={t.value} disabled={t.isPremium && !hasAccess} className="bg-white hover:bg-yellow-50 font-semibold">
                         <span className="flex items-center gap-2">
-                          {t.label}
+                          {t.icon} {t.label}
                           {t.isPremium && !hasAccess && <Lock className="w-3 h-3 text-gray-400" />}
                         </span>
                       </SelectItem>
@@ -491,7 +491,7 @@ export default function UnifiedHomePage() {
                   <span className="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-full border-2 border-black">{currentCredits.toLocaleString()} credits</span>
                 )}
                 
-                {humanizedText && !isHumanizing && (
+                {generatedContent && !isProcessing && (
                   <div className="flex items-center gap-2 pl-3 border-l-2 border-black">
                     <Tooltip>
                       <TooltipTrigger asChild>
