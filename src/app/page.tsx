@@ -2,36 +2,36 @@ import { type Metadata } from "next";
 import UnifiedHomePage from "./UnifiedHomePage";
 
 export const metadata: Metadata = {
-  title: "FilterNote: Free AI Humanizer to Bypass AI Detectors",
-  description: "FilterNote transforms your content into natural, undetectable writing. Bypass AI detectors effortlessly with FilterNote.",
+  title: "NoteGlider: AI-Powered Study Tool - Summaries, Flashcards, Quizzes & Audio",
+  description: "Transform your notes into flashcards, quizzes, and summaries with AI. Focus with ambient sounds and track your progress.",
   keywords: [
-    "AI text humanizer",
-    "humanize AI text",
-    "AI detection bypass",
-    "text paraphrasing",
-    "natural writing",
-    "AI content",
-    "human-like text",
-    "content creation",
-    "writing tool",
-    "AI writing assistant"
+    "AI study tool",
+    "flashcards generator",
+    "quiz maker",
+    "note summarizer",
+    "audio learning",
+    "study smarter",
+    "AI learning assistant",
+    "student productivity",
+    "exam preparation",
+    "study notes"
   ],
-  authors: [{ name: "FilterNote" }],
-  creator: "FilterNote",
-  publisher: "FilterNote",
+  authors: [{ name: "NoteGlider" }],
+  creator: "NoteGlider",
+  publisher: "NoteGlider",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   alternates: {
-    canonical: "https://filternote.com",
+    canonical: "https://noteglider.com",
   },
   openGraph: {
-    title: "FilterNote: Free AI Humanizer to Bypass AI Detectors",
-    description: "FilterNote transforms your content into natural, undetectable writing. Bypass AI detectors effortlessly.",
-    url: "https://filternote.com",
-    siteName: "FilterNote",
+    title: "NoteGlider: AI-Powered Study Tool",
+    description: "Transform your notes into flashcards, quizzes, and summaries with AI.",
+    url: "https://noteglider.com",
+    siteName: "NoteGlider",
     images: [
       {
         url: "/forOpengraph.png",
@@ -45,11 +45,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FilterNote: Free AI Humanizer to Bypass AI Detectors",
-    description: "Free AI humanizer transforms your content into natural, undetectable writing. Bypass AI detectors effortlessly.",
+    title: "NoteGlider: AI-Powered Study Tool",
+    description: "Transform your notes into flashcards, quizzes, and summaries with AI.",
     images: ["/forOpengraph.png"],
-    site: "@filternote",
-    creator: "@filternote",
+    site: "@noteglider",
+    creator: "@noteglider",
   },
   robots: {
     index: true,

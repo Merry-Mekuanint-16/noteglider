@@ -19,34 +19,26 @@ import TopUpSection from "~/components/pricing/TopUpSection";
 import { cn } from "~/lib/utils";
 import { SiteFooter } from "~/components/SiteFooter";
 
-const TONES = [
-  { value: "default", label: "Standard", isPremium: false },
-  { value: "casual", label: "Casual", isPremium: false },
-  { value: "professional", label: "Professional", isPremium: true },
-  { value: "academic", label: "Academic", isPremium: true },
-  { value: "creative", label: "Creative", isPremium: true },
-  { value: "formal", label: "Formal", isPremium: true },
-  { value: "friendly", label: "Friendly", isPremium: true },
-  { value: "persuasive", label: "Persuasive", isPremium: true },
+const STUDY_MODES = [
+  { value: "summary", label: "Summary", icon: "📝", isPremium: false },
+  { value: "flashcards", label: "Flashcards", icon: "🎴", isPremium: false },
+  { value: "quiz", label: "Quiz", icon: "❓", isPremium: true },
+  { value: "audio", label: "Audio Learning", icon: "🎧", isPremium: true },
 ];
 
-const HUMANIZING_PROCESSES = [
-  "Analyzing text structure",
-  "Identifying AI patterns",
-  "Reviewing sentence flow",
-  "Optimizing vocabulary",
+const PROCESSING_STEPS = [
+  "Analyzing your notes",
+  "Extracting key concepts",
+  "Organizing information",
+  "Generating content",
   "Finalizing output",
 ];
 
 const DETECTOR_NAMES = [
-  { name: "Turnitin", logo: "/logo/turnitin.png" },
-  { name: "GPTZero", logo: "/logo/GPTZero.png" },
-  { name: "Copyleaks", logo: "/logo/copyleaks.png" },
-  { name: "ZeroGPT", logo: "/logo/zeroGPT.png" },
-  { name: "Originality.ai", logo: "/logo/originality.png" },
-  { name: "Sapling", logo: "/logo/sapling.png" },
-  { name: "Writer", logo: "/logo/writer.png" },
-  { name: "Quillbot", logo: "/logo/quillbot.png" },
+  { name: "Summary", logo: "/logo/turnitin.png" },
+  { name: "Flashcards", logo: "/logo/GPTZero.png" },
+  { name: "Quiz", logo: "/logo/copyleaks.png" },
+  { name: "Audio", logo: "/logo/zeroGPT.png" },
 ];
 
 interface HistoryItem {
@@ -62,9 +54,9 @@ interface HistoryItem {
 export default function UnifiedHomePage() {
   const { isSignedIn, user } = useUser();
   const [originalText, setOriginalText] = useState("");
-  const [humanizedText, setHumanizedText] = useState("");
-  const [tone, setTone] = useState("default");
-  const [isHumanizing, setIsHumanizing] = useState(false);
+  const [generatedContent, setGeneratedContent] = useState("");
+  const [studyMode, setStudyMode] = useState("summary");
+  const [isProcessing, setIsProcessing] = useState(false);
   const [copied, setCopied] = useState(false);
   const [currentCredits, setCurrentCredits] = useState<number | undefined>(undefined);
   const [subscriptionPlan, setSubscriptionPlan] = useState<string | null>(null);
@@ -81,29 +73,29 @@ export default function UnifiedHomePage() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    if (!isHumanizing) return;
-    setThoughtsList([HUMANIZING_PROCESSES[0] || ""]);
+    if (!isProcessing) return;
+    setThoughtsList([PROCESSING_STEPS[0] || ""]);
     const scheduleNext = () => {
       const randomDelay = Math.floor(Math.random() * 2000) + 1500;
       processTimeoutRef.current = setTimeout(() => {
         setThoughtsList(prev => {
-          const idx = HUMANIZING_PROCESSES.indexOf(prev[0] || "");
-          const nextIdx = (idx + 1) % HUMANIZING_PROCESSES.length;
-          return [HUMANIZING_PROCESSES[nextIdx] || ""];
+          const idx = PROCESSING_STEPS.indexOf(prev[0] || "");
+          const nextIdx = (idx + 1) % PROCESSING_STEPS.length;
+          return [PROCESSING_STEPS[nextIdx] || ""];
         });
         scheduleNext();
       }, randomDelay);
     };
     scheduleNext();
     return () => { if (processTimeoutRef.current) clearTimeout(processTimeoutRef.current); };
-  }, [isHumanizing]);
+  }, [isProcessing]);
 
   useEffect(() => {
-    if (humanizedText.length >= 50) {
+    if (generatedContent.length >= 50) {
       setThoughtsList([]);
       if (processTimeoutRef.current) clearTimeout(processTimeoutRef.current);
     }
-  }, [humanizedText.length]);
+  }, [generatedContent.length]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0);
